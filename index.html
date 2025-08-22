@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Responsive Layout — Flexbox + Grid Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="site">
+    <!-- Header -->
+    <header class="site-header" role="banner">
+      <div class="brand">
+        <h1>MySite</h1>
+        <p class="tagline">Thoughtful layouts with Grid & Flexbox</p>
+      </div>
+
+      <!-- Navigation uses Flexbox for alignment -->
+      <nav class="site-nav" role="navigation" aria-label="Main navigation">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Articles</a></li>
+          <li><a href="#">Projects</a></li>
+          <li><a href="#">About</a></li>
+          <li class="cta"><a href="#">Subscribe</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Main Grid: content and sidebar layout uses CSS Grid -->
+    <div class="layout">
+      <main class="content" role="main">
+        <section class="hero">
+          <h2>Responsive layout with CSS Grid & Flexbox</h2>
+          <p>Resize the browser to see the layout adapt across desktop, tablet and mobile breakpoints. Grid handles the main page structure while Flexbox is used for navigation and card alignment.</p>
+        </section>
+
+        <section class="cards-section" aria-labelledby="cards-heading">
+          <h3 id="cards-heading">Latest articles</h3>
+
+          <!-- Cards container: we use Flexbox here to wrap and align cards -->
+          <div class="cards">
+            <article class="card">
+              <div class="card-media" aria-hidden="true"></div>
+              <div class="card-body">
+                <h4>Designing with Grid</h4>
+                <p>Learn how grid areas, templates, and implicit tracks help build robust page layouts that adapt easily.</p>
+                <a class="read-more" href="#">Read more →</a>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-media" aria-hidden="true"></div>
+              <div class="card-body">
+                <h4>Using Flexbox for Components</h4>
+                <p>Flexbox excels at one-dimensional alignment — great for navs, toolbars, and card layouts.</p>
+                <a class="read-more" href="#">Read more →</a>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-media" aria-hidden="true"></div>
+              <div class="card-body">
+                <h4>Responsive Images & Units</h4>
+                <p>Responsive units and image handling make designs fluid and accessible on any device.</p>
+                <a class="read-more" href="#">Read more →</a>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-media" aria-hidden="true"></div>
+              <div class="card-body">
+                <h4>Practical Breakpoints</h4>
+                <p>Use logical breakpoints for layout changes rather than device-specific ones.</p>
+                <a class="read-more" href="#">Read more →</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="feature-grid" aria-labelledby="feature-heading">
+          <h3 id="feature-heading">Feature Highlights</h3>
+          <!-- A small 3-column Grid inside content to show mixed usage -->
+          <div class="features">
+            <div class="feature">Grid-powered main layout</div>
+            <div class="feature">Flexbox navigation & cards</div>
+            <div class="feature">Responsive breakpoints</div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Sidebar -->
+      <aside class="sidebar" role="complementary" aria-label="Sidebar">
+        <div class="widget">
+          <h4>About</h4>
+          <p>Quick blurb about the site. The sidebar appears to the right on wide screens and moves below the main content on small screens.</p>
+        </div>
+
+        <div class="widget">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#">Getting started</a></li>
+            <li><a href="#">Layout patterns</a></li>
+            <li><a href="#">Accessibility</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+      <small>© 2025 MySite — built with CSS Grid & Flexbox</small>
+      <div class="footer-links">
+        <a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Contact</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

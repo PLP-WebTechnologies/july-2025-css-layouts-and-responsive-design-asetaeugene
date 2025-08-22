@@ -1,0 +1,286 @@
+/* -------------------------
+   CSS Variables for easy theming
+   ------------------------- */
+:root{
+  --bg: #f7f9fb;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --accent: #2563eb;
+  --accent-2: #06b6d4;
+  --text: #0f172a;
+  --gap: 1.25rem;
+  --max-width: 1100px;
+  --radius: 10px;
+  --shadow: 0 6px 18px rgba(16,24,40,0.06);
+  --header-height: 88px;
+  --nav-height: 48px;
+}
+
+/* Reset-ish and helpful defaults */
+* { box-sizing: border-box; }
+html,body { height: 100%; }
+body{
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg, var(--bg), #eef2ff 140%);
+  color: var(--text);
+  line-height: 1.45;
+  padding: 2rem 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* Main site container centers content with a max width */
+.site{
+  width: 100%;
+  max-width: var(--max-width);
+}
+
+/* -------------------------
+   Header + Navigation
+   (Flexbox)
+   ------------------------- */
+.site-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap);
+  padding: 1rem 1.25rem;
+  background: rgba(255,255,255,0.6);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 1.25rem;
+}
+
+/* Brand block */
+.brand h1{ margin: 0; font-size: 1.25rem; letter-spacing: -0.5px; }
+.brand .tagline{ margin: 0; color: var(--muted); font-size: 0.85rem; }
+
+/* Navigation uses Flexbox for the list */
+.site-nav ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;               /* Flexbox for nav layout */
+  gap: 0.625rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.site-nav a{
+  text-decoration: none;
+  color: var(--text);
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.site-nav a:hover{ background: rgba(37,99,235,0.06); color: var(--accent); }
+
+/* CTA stands out */
+.site-nav .cta a{
+  background: linear-gradient(90deg,var(--accent),var(--accent-2));
+  color: white;
+  box-shadow: 0 6px 16px rgba(37,99,235,0.12);
+}
+
+/* -------------------------
+   Grid Layout: main content + sidebar
+   (CSS Grid)
+   ------------------------- */
+.layout{
+  display: grid;
+  gap: var(--gap);
+  margin-bottom: 1.25rem;
+}
+
+/* Desktop (>=900px) - main + sidebar side-by-side */
+@media (min-width: 900px){
+  .layout{
+    grid-template-columns: 2fr 320px; /* content and a fixed sidebar */
+    align-items: start;
+  }
+}
+
+/* Tablet (600-899px) - tighter columns */
+@media (min-width: 600px) and (max-width: 899px){
+  .layout{
+    grid-template-columns: 1fr 280px;
+  }
+}
+
+/* Mobile - single column (sidebar moves below content) */
+@media (max-width: 599px){
+  .layout{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Main content styling */
+.content{
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+}
+
+/* Hero */
+.hero h2{ margin-top: 0; font-size: 1.4rem; }
+.hero p{ color: var(--muted); margin-bottom: 0.8rem; }
+
+/* -------------------------
+   Cards (Flexbox)
+   ------------------------- */
+.cards-section h3{ margin-top: 0; }
+
+.cards{
+  display: flex;             /* Flex container */
+  gap: 1rem;
+  flex-wrap: wrap;           /* allow cards to wrap responsively */
+  margin-top: 0.75rem;
+}
+
+/* Each card is a flex item and also uses flex for its internals */
+.card{
+  background: linear-gradient(180deg,#fff,#fbfdff);
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(16,24,40,0.06);
+  border: 1px solid rgba(15,23,42,0.04);
+  display: flex;             /* Flexbox for media + body */
+  gap: 1rem;
+  padding: 0.9rem;
+  align-items: center;
+  flex: 1 1 calc(50% - 1rem); /* 2 columns by default on larger screens */
+  min-width: 260px;
+}
+
+/* Simple media block (visual placeholder) */
+.card-media{
+  width: 96px;
+  height: 72px;
+  background: linear-gradient(135deg,var(--accent),var(--accent-2));
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+/* Card body */
+.card-body h4{ margin: 0 0 0.4rem 0; font-size: 1rem; }
+.card-body p{ margin: 0 0 0.6rem 0; color: var(--muted); font-size: 0.92rem; }
+.read-more{ color: var(--accent); text-decoration: none; font-weight: 700; }
+
+/* On small screens, make cards span full width and stack their internals vertically */
+@media (max-width: 599px){
+  .card{
+    flex-direction: column;
+    align-items: stretch;
+    flex: 1 1 100%;
+  }
+
+  .card-media{
+    width: 100%;
+    height: 140px;
+  }
+}
+
+/* On medium screens, allow 2 columns; on large screens you can still get 2 columns with width control */
+@media (min-width: 900px){
+  .card{ flex: 1 1 calc(50% - 1rem); }
+}
+
+@media (min-width: 1200px){
+  /* When there's room, allow cards to take around 33% if desired */
+  .cards{ gap: 1.25rem; }
+  .card{ flex: 1 1 calc(50% - 1.25rem); max-width: none; }
+}
+
+/* -------------------------
+   Feature grid inside main (show mixing Grid inside content)
+   ------------------------- */
+.features{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.feature{
+  background: linear-gradient(180deg,#fff,#f8fafc);
+  padding: 0.9rem;
+  border-radius: 8px;
+  border: 1px solid rgba(15,23,42,0.03);
+  text-align: center;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* Make feature blocks stack on smaller screens */
+@media (max-width: 899px){
+  .features{ grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 599px){
+  .features{ grid-template-columns: 1fr; }
+}
+
+/* -------------------------
+   Sidebar styling
+   ------------------------- */
+.sidebar{
+  background: rgba(255,255,255,0.85);
+  padding: 1rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  height: fit-content;
+}
+
+.widget{ margin-bottom: 1rem; }
+.widget h4{ margin: 0 0 0.5rem 0; }
+
+/* Sidebar list */
+.sidebar ul{ padding-left: 1rem; margin: 0; color: var(--muted); }
+.sidebar a{ color: var(--accent); text-decoration: none; }
+
+/* On mobile, make sidebar appear below main with full width */
+@media (max-width: 599px){
+  .sidebar{ order: 2; } /* not necessary but explicit: it will be below content in single column grid */
+}
+
+/* -------------------------
+   Footer
+   ------------------------- */
+.site-footer{
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1rem;
+  background: transparent;
+  color: var(--muted);
+}
+
+/* Footer links appear inline and are small */
+.site-footer a{ color: var(--muted); text-decoration: none; font-size: 0.9rem; }
+
+/* On small screens, stack footer items */
+@media (max-width: 599px){
+  .site-footer{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+}
+
+/* -------------------------
+   Utility & accessibility helpers
+   ------------------------- */
+a:focus, button:focus {
+  outline: 3px solid rgba(37,99,235,0.18);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Make the layout breathe on very large viewports */
+@media (min-width: 1400px){
+  body{ padding-left: 2.5rem; padding-right: 2.5rem; }
+}
